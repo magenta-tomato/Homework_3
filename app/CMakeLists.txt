@@ -4,46 +4,46 @@ cmake_minimum_required(VERSION 3.10)
 
 # проект
 project( 
-	bulk 
+	allocators
 	VERSION 
 	${PROJECT_VERSION}
 )
 
 # исполняемый файлы и исходники
 add_executable( 
-	bulk
+	allocators
 	main.cpp 
 )
 
 # исполняемый файл использует библиотеку lib
 target_link_libraries( 
-	bulk 
+	allocators
 	lib 
 )
 
 # исходники используют заголовок библиотеки lib
 target_include_directories(
-    bulk 
+    allocators 
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/../lib
 )
 
 # директория бинарника библиотеки
 target_include_directories(
-	bulk
+	allocators
 	PRIVATE
 	${CMAKE_CURRENT_BINARY_DIR}
 )
 
 # поддержка станадарта языка
 set_target_properties(
-    bulk PROPERTIES
+    allocators PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
 )
 
 #
-install(TARGETS bulk RUNTIME DESTINATION bin)
+install(TARGETS allocators RUNTIME DESTINATION bin)
  
 #
 set(CPACK_GENERATOR DEB)

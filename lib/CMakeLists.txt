@@ -9,14 +9,8 @@ project(
 	${PROJECT_VERSION}
 )
 
-# преобразование h.in в h файл
-configure_file(
-    version.h.in 
-    ${CMAKE_CURRENT_BINARY_DIR}/version.h
-)
-
 # библиотека и исходники
-add_library( lib STATIC Bulk.cpp Bulk.h  )
+add_library( lib STATIC customVector.cpp customVector.h allocators.cpp allocators.h  )
 
 # исходники используют файл version.h
 target_include_directories(
