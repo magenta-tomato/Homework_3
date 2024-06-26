@@ -10,7 +10,8 @@ public:
 	void push_back(const T& x)
 	{
 		if (count == capacity) {
-			capacity = capacity * 2 + 1;
+			//capacity = capacity * 2 + 1;
+			capacity += 10;
 			T* newData = std::allocator_traits<Allocator>::allocate(alloc, capacity);
 			if (count > 0) {
 
