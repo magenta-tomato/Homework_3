@@ -22,7 +22,6 @@ int main(int argc, char* argv[])
 		cout << it->first << " " << it->second << endl;
 	}
 
-	/*
 	cout << "\nDefault map, custom allocator\n" << endl;
 	map<int, int, std::less<int>, AllocatorMap<int, 10> > mapCustomAllocator;
 	for (int i = 0; i < 10; i++) {
@@ -30,7 +29,7 @@ int main(int argc, char* argv[])
 	}
 	for (auto it = mapCustomAllocator.begin(); it != mapCustomAllocator.end(); it++) {
 		cout << it->first << " " << it->second << endl;
-	}*/
+	}
 	
 	cout << "\nCustom vector, default allocator" << endl;
 	CustomVector<int> customVectorDefaultAllocator;
