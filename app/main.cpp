@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
 	}
 
 	cout << "\nCustom vector, custom allocator" << endl;
-	CustomVector<int, AllocatorVec<int, 16>> customVectorCustomAllocator;
+	CustomVector<int, AllocatorVec<int, 10>> customVectorCustomAllocator;
 	for (int i = 0; i < 10; i++) {
 		customVectorCustomAllocator.push_back(factorial(i));
 	}
