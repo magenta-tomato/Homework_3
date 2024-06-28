@@ -11,8 +11,13 @@ template<class T, size_t reserved>
 class AllocatorMap
 {
 public:
-	~AllocatorMap() {}
-	AllocatorMap() {}
+	AllocatorMap() {
+		data = reinterpret_cast<T*>(::operator new(reserved * sizeof(T)));
+	}
+	~AllocatorMap() 
+	{
+		::operator delete(data);
+	}
 
 	T* allocate(size_t numObjects)
 	{
@@ -23,7 +28,7 @@ public:
 		}
 		T* res = data + cur;
 		cur += numObjects;
-		return reinterpret_cast<T*>(res);
+		return res;
 	}
 	void deallocate(T* data, std::size_t numObjects) {}
 
@@ -37,7 +42,7 @@ public:
 
 private:
 	//зарезервированная память
-	T data[reserved];
+	T* data;
 	size_t cur = 0;
 };
 
@@ -47,9 +52,14 @@ template<class T, size_t reserved>
 class AllocatorVec
 {
 public:
+	AllocatorVec() {
+		data = reinterpret_cast<T*>(::operator new(reserved * sizeof(T)));
+	}
 
-	~AllocatorVec() {}
-	AllocatorVec() {}
+	~AllocatorVec() 
+	{
+		::operator delete(data);
+	}
 
 	T* allocate(size_t numObjects)
 	{
@@ -57,7 +67,7 @@ public:
 		if (numObjects > reserved) {
 			throw::std::bad_alloc();
 		}
-		return reinterpret_cast<T*>(data);
+		return data;
 	}
 	void deallocate(T* data, std::size_t numObjects) {}
 
@@ -71,6 +81,5 @@ public:
 
 private:
 	//зарезервированная память
-	T data[reserved];
-	size_t cur = 0;
+	T* data;
 };
